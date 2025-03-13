@@ -13,4 +13,8 @@
   - 보안에 취약함
 
 ### React Project 생성  
-* npx create-react-app 이름
+```
+npx create-react-app 이름
+cd 이름
+npm start
+```
