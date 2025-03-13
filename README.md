@@ -18,3 +18,6 @@ npx create-react-app 이름
 cd 이름
 npm start
 ```
+
+### React Project의 구조 및 역할
+![](./img/RP1.PNG)
