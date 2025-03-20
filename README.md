@@ -126,6 +126,32 @@
       ```
       ![](./img/3.PNG)
 
+### Component를 작성하는 JavaScript와 Markup  
+* React Component는 JavaScript 함수
+  - 조건에 따라 화면을 다르게 표시하고 싶다면 if문 사용  
+  - 목록을 표시하고 싶다면 map()함수 이용  
+  - 예제 VideoList.js  
+    ```javascript
+      function VideoList({ videos, emptyHeading }) {
+        const count = videos.length;
+        let heading = emptyHeading;
+        if (count > 0) {
+          const noun = count > 1 ? 'Videos' : 'Video';
+          heading = count + ' ' + noun;
+        }
+        return (
+          <section>
+            <h2>{heading}</h2>
+            {videos.map(video =>
+              <Video key={video.id} video={video} />
+            )}
+          </section>
+        );
+    }
+    ```
+    ![](./img/4.PNG)  
+    - 이 마크업 구문을 JSX라고 부름. React에 의해서 대중화된 자바스크립트 구문의 확장
+
 
 ## 3월 13일 (2주차)
 ### Node.js
