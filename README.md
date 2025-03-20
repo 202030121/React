@@ -83,10 +83,11 @@
     rm -rf node_modules package-lock.json
     ```  
   - npm 패키지의 임시 저장소인 cache를 초기화  
+    - force 옵션 강제 삭제  
     ```
     npm cache clean --force
     ```  
-    - force 옵션 강제 삭제  
+    
   - 패키지 재설치  
     ```
     npm install
