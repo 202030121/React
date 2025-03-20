@@ -101,6 +101,31 @@
   - 팀 프로젝트에서 다른 팀원이 이상한 상태로 package-lock.json 업데이트 시  
     - 재설치 권장  
 
+### React
+* React는 component 단위로 개발하여 조립하듯이 앱을 완성  
+* component는 작은 기능을 실행할 수 있는 하나의 모듈  
+  - 공식 사이트의 홈에 component 사용법 기재  
+
+### Component를 사용한 유저 인터페이스 생성  
+* 사용자 인터페이스 구축  
+  - Video, Thumbnail 및 LikeButton이라는 react component 생성, 이 component를 결합하여 화면과 페이지 그리고 앱 전체를 구성  
+  - 예제 Video.js
+      ```javascript
+      function Video({ video }) {
+        return (
+          <div>
+            <Thumbnail video={video} />
+            <a href={video.url}>
+              <h3>{video.title}</h3>
+              <p>{video.description}</p>
+            </a>
+            <LikeButton video={video} />
+          </div>
+        );
+      }
+      ```
+      ![](./img/3.PNG)
+
 
 ## 3월 13일 (2주차)
 ### Node.js
