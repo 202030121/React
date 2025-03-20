@@ -71,18 +71,26 @@
 
 * clone을 받은 프로젝트의 경우  
   - 다음 명령을 실행하면 패키지를 다시 설치  
-    - ```npm install```  
+     ```
+    npm install
+    ```  
   - node_modules 디렉토리는 자동 생성  
   - 설치가 끝나면 프로젝트 동작 확인  
 
 * 프로젝트에 오류나 의존성 등의 문제가 생겼을 경우  
   - node_modules 폴더와 package-lock.json 파일 삭제  
-    - ```rm -rf node_modules package-lock.json```  
+    ```
+    rm -rf node_modules package-lock.json
+    ```  
   - npm 패키지의 임시 저장소인 cache를 초기화  
-    - ```npm cache clean --force```  
+    ```
+    npm cache clean --force
+    ```  
     - force 옵션 강제 삭제  
   - 패키지 재설치  
-    - ```npm install```  
+    ```
+    npm install
+    ```  
 
 * package-lock.json을 삭제하는 이유  
   - package-lock.json이 손상 혹은 잘못된 의존성이 있을 때  
