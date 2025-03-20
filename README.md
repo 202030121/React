@@ -150,6 +150,36 @@
     ![](./img/5.PNG)  
     - React를 기존 HTML 페이지에 추가하고, 페이지 어디에서나 상호작용하는 React Component를 렌더링할 수 있음
 
+### Full-stack App 개발을 도와주는 React Framework
+* React는 라이브러리이기 때문에 component를 조립할 수 있지만, 라우팅 및 데이터 가져오기 방법 등을 규정하진 않음  
+* React로 전체 앱을 빌드하려면 Next.js 또는 Remix와 같은 풀스택 리액트 프레임워크를 사용  
+* 사이트의 confs/[slug].js는 Next.js에서 제공하는 라우팅 방법 중 하나  
+  - 예제 confs/[slug].js  
+    ```javascript
+    import { db } from './database.js';
+    import { Suspense } from 'react';
+
+    async function ConferencePage({ slug }) {
+      const conf = await db.Confs.find({ slug });
+      return (
+        <ConferenceLayout conf={conf}>
+          <Suspense fallback={<TalksLoading />}>
+            <Talks confId={conf.id} />
+          </Suspense>
+        </ConferenceLayout>
+      );
+    }
+
+    async function Talks({ confId }) {
+      const talks = await db.Talks.findAll({ confId });
+      const videos = talks.map(talk => talk.video);
+      return <SearchableVideoList videos={videos} />;
+    }
+    ```
+    ![](./img/6.PNG)  
+    - React는 아키텍처이기도 함. 이를 구현하는 프레임워크는 서버에서 실행되는 비동기 컴포넌트 혹은 빌드 중에 실행되는 비동기 컴포넌트에서 데이터를 가져올 수 있도록 함.  
+    - 파일이나 데이터베이스에서 데이터를 읽고, 이를 상호작용하는 컴포넌트에 전달할 수 있음  
+
 
 ## 3월 13일 (2주차)
 ### Node.js
