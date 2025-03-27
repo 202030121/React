@@ -28,6 +28,19 @@
   }
   ```  
   ![](./img/8.PNG)  
+* exprot default 선언의 위치  
+  - vscode에서 자동완성할 경우 맨 아래에 선언됨  
+  - 하지만 공식 문서처럼 main component의 function 키워드 왼쪽에 선언하는 것을 권장  
+  - exprot default 키워드는 파일내의 component중 기본 component를 지정  
+* export default와 export의 차이  
+  - Named Exports (export)  
+    - 하나의 파일안에 여러 개의 component가 있을 때 사용  
+    - component를 사용하는 쪽에서는 component의 정확한 이름을 반드시 명시  
+    - import {add, subtract, mulutiply, divide} from './math'  
+  - Default Exports (export default)  
+    - 하나의 파일안에서 하나의 component만 내보내는 경우 사용  
+    - component를 사용하는 쪽에서 어떤 이름을 사용해도 상관 없음  
+    - ex) import calc from './calculator'
 
 ## 3월 20일 (3주차)
 ### 의존성 관리와 package.json  
