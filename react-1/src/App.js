@@ -1,16 +1,17 @@
-function MyButton() {
-  return (
-    <button>
-      I'm a button
-    </button>
-  );
-}
+import { Button1, Button3 } from "./ButtonLib";
+import MyB from "./MyButton";
+import AboutPage from "./AboutPage";
+import Profile from "./Profile";
 
 export default function App() {
   return (
     <div>
       <h1>Welcome to my app</h1>
-      <MyButton />
+      <MyB /><br/>
+      <Button1 />&nbsp;
+      <Button3 />
+      <AboutPage />
+      <Profile />
     </div>
   );
 }

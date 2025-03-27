@@ -5,7 +5,8 @@
 * React앱은 component로 만들어짐  
   - component는 고유한 로직과 모양을 가진 UI의 일부  
   - 버튼처럼 작을 수도 있고, 전체 페이지처럼 클 수도 있음  
-  - 마크업을 반환하는 자바스크립트 함수  
+  - 마크업을 반환하는 자바스크립트 함수 
+
 * Nesting은 CSS 선택자의 중첩 구조와 비슷함  
   ![](./img/7.PNG)  
 * 예제 App.js  
@@ -32,15 +33,85 @@
   - vscode에서 자동완성할 경우 맨 아래에 선언됨  
   - 하지만 공식 문서처럼 main component의 function 키워드 왼쪽에 선언하는 것을 권장  
   - exprot default 키워드는 파일내의 component중 기본 component를 지정  
+
 * export default와 export의 차이  
   - Named Exports (export)  
     - 하나의 파일안에 여러 개의 component가 있을 때 사용  
     - component를 사용하는 쪽에서는 component의 정확한 이름을 반드시 명시  
-    - import {add, subtract, mulutiply, divide} from './math'  
+    - ex) import {add, subtract, mulutiply, divide} from './math'  
   - Default Exports (export default)  
     - 하나의 파일안에서 하나의 component만 내보내는 경우 사용  
     - component를 사용하는 쪽에서 어떤 이름을 사용해도 상관 없음  
-    - ex) import calc from './calculator'
+    - ex) import calc from './calculator'  
+* MyButton component 분리 예제  
+  ![](./img/9.PNG)  
+### JSX로 마크업 작성하기  
+* 앞에서 작성한 코드의 마크업 문법을 JSX라고 함  
+* React 프로젝트에서는 편의성을 위해 JSX를 사용  
+* JSX는 HTML보다 더욱 엄격한 문법을 적용  
+* JSX에서는 싱글 태그라도 태그를 닫아야함  
+* React에서는 여러 개의 component를 JSX 태그로 반환할 수 있음  
+* 예제 AboutPage.js  
+  ```javascript
+    function AboutPage() {
+    return (
+      <>
+        <h1>About</h1>
+        <p>Hello there.<br />How do you do?</p>
+      </>
+    );
+  }
+  ```   
+### 스타일 추가하기  
+* React에서는 className으로 CSS 클래스를 지정  
+  ```<img className="avatar"/>```  
+
+* className은 html의 class 속성과 동일한 방식으로 동작  
+* CSS 규칙은 별도의 CSS 파일에 작성. 그런데 React는 CSS 파일을 추가하는 방법을 규정하지 않음  
+  - 정적 페이지를 작성할 때와 동일한 방법을 지원  
+  ```javascript
+  /* in your CSS */
+  .avatar {
+    border-radius: 50%;
+  }
+  ```  
+* 가장 간단한 방법은 html에 ``<link>`` 태그를 추가  
+  - link를 추가하면 정적페이지를 수정해야 하기 때문에 추천하지 않음  
+
+### 데이터 표시  
+* JSX를 사용하면 자바스크립트에 마크업을 넣을 수 있음  
+
+* JSX 코드 내에서 자바스크립트로 탈출하여 표현식을 사용하는 것  
+  - 이 방법을 Escape Back 이라고 함  
+* {} 중괄호를 사용하여 변수나 표현식을 사용자에게 표시  
+![](./img/10.PNG)  
+  - src 속성에 user.imageUrl 변수의 값을 전달하여 이미지의 경로를 설정  
+* 예제 Profile.js  
+  ```javascript
+      const user = {
+    name: 'Hedy Lamarr',
+    imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+    imageSize: 90,
+  };
+
+  export default function Profile() {
+    return (
+      <>
+        <h1>{user.name}</h1>
+        <img 
+          className="avatar"
+          src={user.imageUrl}
+          alt={'Photo of ' + user.name}
+          style={{
+            width: user.imageSize,
+            height: user.imageSize
+          }}
+        />
+      </>
+    );
+  }
+  ```  
+  ![](./img/11.PNG)
 
 ## 3월 20일 (3주차)
 ### 의존성 관리와 package.json  
