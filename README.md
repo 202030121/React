@@ -86,8 +86,10 @@
 * {} 중괄호를 사용하여 변수나 표현식을 사용자에게 표시  
 ![](./img/10.PNG)  
   - src 속성에 user.imageUrl 변수의 값을 전달하여 이미지의 경로를 설정  
-* 예제 Profile.js  
+* 예제 Profile.js (App.js에 임포트)
   ```javascript
+    import './Profile.css'
+
       const user = {
     name: 'Hedy Lamarr',
     imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
@@ -111,7 +113,23 @@
     );
   }
   ```  
-  ![](./img/11.PNG)
+* CSS파일 추가  
+  -``import './Profile.css'``
+  ![](./img/11.PNG)  
+  
+### 조건부 렌더링  
+* React에서 조건문을 작성하는 데에는 특별한 문법이 필요하지 않음  
+
+* 일반적인 자바스크립트 코드를 작성할 때 사용하는 것과 동일한 방법을 사용  
+![](./img/12.PNG)  
+
+### 리스트 렌더링하기  
+* 컴포넌트 리스트을 렌더링하기 위해서는 for문 및 map() 함수와 같은 자바스크립트 기능을 사용  
+
+* 목록을 사용할 때는 각 항목에 대해 고유하게 식별하는 문자열 또는 숫자를 전달해야 함  
+* 항목을 삽입, 삭제 또는 재정렬할 때 어떤 일이 일어났는지 알기 위해 key를 사용  
+  - 이 것을 key props라고 함  
+  ![](./img/13.PNG)
 
 ## 3월 20일 (3주차)
 ### 의존성 관리와 package.json  
