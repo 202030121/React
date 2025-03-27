@@ -1,5 +1,34 @@
 # 202030121 이승엽
 
+## 3월 27일 (4주차)
+### Component 생성 및 nesting(중첩)  
+* React앱은 component로 만들어짐  
+  - component는 고유한 로직과 모양을 가진 UI의 일부  
+  - 버튼처럼 작을 수도 있고, 전체 페이지처럼 클 수도 있음  
+  - 마크업을 반환하는 자바스크립트 함수  
+* Nesting은 CSS 선택자의 중첩 구조와 비슷함  
+  ![](./img/7.PNG)  
+* 예제 App.js  
+  ```javascript
+      function MyButton() {
+        return (
+          <button>
+            I'm a button
+          </button>
+        );
+  }
+
+    export default function MyApp() {
+      return (
+        <div>
+          <h1>Welcome to my app</h1>
+          <MyButton />
+        </div>
+      );
+  }
+  ```  
+  ![](./img/8.PNG)  
+
 ## 3월 20일 (3주차)
 ### 의존성 관리와 package.json  
 * packge.json  
