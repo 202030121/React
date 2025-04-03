@@ -63,7 +63,24 @@
   - 최상위에서만 호출  
   - if, for, while 등의 블록 내부에서 Hooks를 호출하면 안됨  
   - 함수의 조건문 내부에서 호출하면 실행 순서가 달라질 수 있음  
-  ![](./img/15.PNG)
+  ![](./img/15.PNG)  
+
+* React 함수형 component 또는 사용자 Hook 내부에서만 사용 가능  
+  - 일반적인 자바스크립스 함수에서 useState, useEffect 등의 Hook는 사용 불가  
+  ![](./img/16.PNG)  
+* 이런 제한이 필요한 이유 : React의 동작을 예측 가능하고, 안정성을 높이기 위해 필요한 규칙  
+  - 렌더링 순서를 보장하기 위해  
+    - 조건문이나 반복분 안에서 Hooks를 사용하면 매 렌더링마다 Hook의 호출 순서가 달라질 수 있기 땜누에 React가 상태를 제대로 추적할 수 없음  
+  - 불필요한 사이드 이펙트 방지  
+    - component가 여러번 렌더링될 때마다 동일한 순서로 Hook이 실행되어야 React가 의도한 동작을 수행할 수 있음  
+* 왜 function형 component에서만 Hook을 사용할까  
+  - React는 component의 상태관리와 로직을 더 간결하게 만들기 위해 Hook를 도입  
+  - 따라서 React 팀은 function형 component를 권장  
+  - Hook은 function형 component 전용으로 설계  
+    
+### Tic-Tac-Toe 만들기  
+* 이 튜토리얼에서 배우게 될 기술은 모든 React앱을 만드는데 기본이 되는 기술  
+
 
 ## 3월 27일 (4주차)
 ### Component 생성 및 nesting(중첩)  
