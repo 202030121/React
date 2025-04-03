@@ -80,6 +80,9 @@
     
 ### Tic-Tac-Toe 만들기  
 * 이 튜토리얼에서 배우게 될 기술은 모든 React앱을 만드는데 기본이 되는 기술  
+* 프로젝트를 새로 생성하거나, 초기 commit으로 switch해서 새 branch를 만들기  
+* src/에 있는 파일 중 불필요한 파일을 삭제(필수는 아님)  
+  - App.text.js, logo.svg, setupTests.js
 
 
 ## 3월 27일 (4주차)
