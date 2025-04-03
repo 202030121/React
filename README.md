@@ -50,8 +50,20 @@
   - 각 버튼이 고유한 count State를 기억하고 다른 버튼에 영향을 주지 않는 방식  
 
 ### Hook 사용하기  
+* use로 시작하는 함수를 Hook이라고 함  
 
+* useState는 react에서 제공하는 내장 Hook  
+* 기존의 것들을 조합하여 자신만의 Hook을 작성할 수 있음  
+* Hook는 다른 함수보다 더 제한적  
+  - component 또는 다른 Hook의 상단에서만 Hook를 호출할 수 있음  
+  - 조건이나 반복문에서 useState를 사용하고 싶다면 새 component를 추출하여 그곳에 넣기  
 
+### Hook의 사용 규칙  
+* Hook는 React의 렌더링 및 상태 관리 메커니즘과 밀접하게 연결되어 있으며, 아래와 같은 규칙을 따라야 함  
+  1. 최상위에서만 호출  
+  2. if, for, while 등의 블록 내부에서 Hooks를 호출하면 안됨  
+  3. 함수의 조건문 내부에서 호출하면 실행 순서가 달라질 수 있음  
+  ![](./img/15.PNG)
 
 ## 3월 27일 (4주차)
 ### Component 생성 및 nesting(중첩)  

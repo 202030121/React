@@ -3,9 +3,11 @@ import MyB from "./MyButton";
 import AboutPage from "./AboutPage";
 import Profile from "./Profile";
 import ShoppingList from "./ShoppingList";
+import './App.css'
 
 export default function App() {
   return (
+    <div className="wrapper">
     <div>
       <h1>Welcome to my app</h1>
       <MyB /><br/>
@@ -14,6 +16,13 @@ export default function App() {
       <AboutPage />
       <Profile />
       <ShoppingList />
+    </div>
+    <div>
+      <h1>hi</h1>
+      <MyB /><br/>
+      <MyB /><br/>
+      <MyB /><br/>
+    </div>
     </div>
   );
 }
