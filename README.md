@@ -1,5 +1,58 @@
 # 202030121 이승엽
 
+## 4월 3일 (5주차)
+### 이벤트에 응답하기  
+* component 내부에 이벤트 헨들러 함수를 선언하면 이벤트에 응답 가능  
+
+  - 함수를 호출하지 않고 전달만 하면 됨  
+  - React는 사용자가 버튼을 클릭할 대 이벤트 핸들러를 호출  
+* 예제 MyButton.js 수정  
+  ```javascript
+    export default function MyButton() {
+    function handleClick() {
+      alert('You clicked me!');
+    }
+
+    return (
+      <button onClick={handleClick}>
+        I'm a button!!!!!
+      </button>
+    )
+  }
+  ```  
+
+### 화면 업데이트  
+* component가 특정 정보를 기억해 두었다가 표시하기를 원하는 경우가 있음  
+
+  - 예를 들어 버튼이 클릭된 횟수를 세고 싶으면 component에 state를 추가  
+* useState로부터 현재의 state를 저장할 수 있는 변수인 count와 이를 업데이트할 수 있는 함수인 setCount를 얻을 수 있음  
+* 이름은 [something, setSomething]으로 작성하는 것이 일반적  
+  - 즉, 변수 이름과 변수 이름 앞에 set을 붙인 업데이트 함수를 관용적으로 사용
+* 예제 MyButton.js 수정  
+  ```javascript
+  import { useState } from 'react';
+
+  export default function MyButton() {
+    const [count, setCount] = useState(0);
+
+    function handleClick() {
+      setCount(count + 1);
+    }
+
+    return (
+      <button onClick={handleClick}>
+        Clicked {count} times
+      </button>
+    )
+  }
+  ```  
+  ![](./img/14.PNG)  
+  - 각 버튼이 고유한 count State를 기억하고 다른 버튼에 영향을 주지 않는 방식  
+
+### Hook 사용하기  
+
+
+
 ## 3월 27일 (4주차)
 ### Component 생성 및 nesting(중첩)  
 * React앱은 component로 만들어짐  
