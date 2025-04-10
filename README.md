@@ -38,11 +38,43 @@
     function Square() {
       const [value, setValue] = useState(null);
       funtion handleClick(){
-        //..
+        setValue=('X');
       }
+      return (
+      <button className="square" onClick={handleClick}>{value}</button>
+     )
     }
   ```
 
+### state 끌어올리기  
+* state를 각 Square가 아닌 부모 컴포넌트인 Board에 저장  
+
+* Board 컴포넌트는 각 Square에 숫자를 전달했을 때와 같이 prop를 전달하여 각 Square에 표시할 내용을 정할 수 있음  
+* 여러 자식 컴포넌트에서 데이터를 수집하거나 두 자식 컴포넌트가 서로 통신하도록 하려면, 부모 컴포넌트에서 공유 state를 선언  
+* 부모 컴포넌트는 props를 통해 해당 state를 자식 컴포넌트에 전달할 수 있음  
+  - 이렇게 하면 자식 컴포넌트가 서로 동기화되고, 부모 컴포넌트와도 동기화 가능  
+* state 끌어올리는 방법  
+  - Board 컴포넌트를 편집해서 9개 Square에 해당하는 9개의 null의 배열을 기본값으로 하는 state 변수 Square를 선언  
+  ``` javascript
+    export default function Board() {
+      const [squares, setSquares] = useState(Array(9), fill(null));
+      return {
+        //...
+      }
+    }
+  ```  
+  - 보드를 채우면 square 배열은 다음과 같은 모양이 됨. 
+  ```['0',null,'X','X','X','O','O',null,null]```
+
+### 컴포넌트 분리하기  
+* 분리 순서  
+  - component 이름과 동일한 파일 생성  
+  - 해당 파일에 코드를 복사하고 export default 키워드를 추가  
+  - 필요한 component와 useState를 추가  
+  - App.js에서 해당 코드 삭제, Board component를 import 추가
+  - App.js에서 useState의 import 제거  
+  - Square 컴ㅍ넌트에서 value의 상태 추적과 버튼의 onClick prop를 제거  
+  - Square 컴포넌트의 props에 onSquareClick 함수 추가  
 
 ## 4월 3일 (5주차)
 ### 이벤트에 응답하기  
