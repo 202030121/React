@@ -1,5 +1,18 @@
 # 202030121 이승엽
 
+## 4월 10일 (6주차)  
+### props를 통해 데이터 전달  
+```React의 component architecture를 사용해서 재사용할 수 있는 component를 만들어서 중복된 코드 삭제  
+*Board component를 만들고, Square component의 내용 복사  
+*Square component의 button을 하나만 남기고 모두 삭제  
+*Board component의 button을 Square에서 Board로 변경  
+출력 확인
+```  
+* 여기까지 진행한 경우 숫자 출력이 1만 나옴.  
+  - 이 문제를 해결하기 위해 props를 사용하여 각 사각형이 가져야 할 값을 부모 컴포넌트(Board)에서 자식 (Square)로 전달  
+  - 컴포넌트를 호출하는 쪽이 부모 컴포넌트  
+  
+
 ## 4월 3일 (5주차)
 ### 이벤트에 응답하기  
 * component 내부에 이벤트 헨들러 함수를 선언하면 이벤트에 응답 가능  
