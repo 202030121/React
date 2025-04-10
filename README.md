@@ -11,7 +11,38 @@
 * 여기까지 진행한 경우 숫자 출력이 1만 나옴.  
   - 이 문제를 해결하기 위해 props를 사용하여 각 사각형이 가져야 할 값을 부모 컴포넌트(Board)에서 자식 (Square)로 전달  
   - 컴포넌트를 호출하는 쪽이 부모 컴포넌트  
-  
+
+* Suqare 컴포넌트를 value prop을 전달받을 수 있도록 수정  
+```javascript
+  function Square({value}) {
+    return <button calssName="square">{value}</button>;
+  }
+```  
+  - 문자열 value가 아닌 자바스크립트 변수가 렌더링 되어야 함  
+
+### 사용자와 상호작용하는 컴포넌트  
+* 한글문서에서 사각형이라고 번역된 것은 모두 Square 컴포넌트를 의미함  
+
+* Square 컴포넌트를 클릭하면 X로 채워지게 코드 수정  
+  - 먼저 Square 내부에 handleClick 함수 선언  
+  - 다음 Square 컴포넌트에서 반환되는 JSX 버튼의 props에 onClick을 추가  
+* 사각형 컴포넌트가 클릭 된 것을 기억하고 X로 채우기  
+  - 컴포넌트는 무언가 기어갛기 위해 state를 사용  
+  - React는 상태 기억을 위해 useState라는 Hook을 제공  
+  - Square의 현재 값을 state에 저장하고 Square가 클릭하면 값이 변경되게  
+  ```javascript
+    /*useState를 import  
+    Square 컴포넌트에서 value prop 제거 후 useState 사용  
+    Square 컴포넌트의 시작 부분에 useState를 호출, value라는 이름의 state 변수를 반환 */  
+    import {useState} from 'react';
+    function Square() {
+      const [value, setValue] = useState(null);
+      funtion handleClick(){
+        //..
+      }
+    }
+  ```
+
 
 ## 4월 3일 (5주차)
 ### 이벤트에 응답하기  
