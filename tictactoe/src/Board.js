@@ -6,7 +6,7 @@ export default function Board() {
   const [square, setSquare] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    if (square[i]) {
+    if (square[i] || calculateWinner(square)) {
       return;
     }
     const nextSquare = square.slice();
@@ -40,7 +40,7 @@ export default function Board() {
   )
 }
 
-function calculateWinner(squares) {
+function calculateWinner(square) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -53,8 +53,8 @@ function calculateWinner(squares) {
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+    if (square[a] && square[a] === square[b] && square[a] === square[c]) {
+      return square[a];
     }
   }
   return null;

@@ -114,7 +114,24 @@
     }
     return null;
   }
-  ```
+  ```  
+  - lines는 승리 할 수 있는 squares의 index 번호  
+  - for문을 통해 lines의 길이만큼 비교반복  
+  - 구조 분해 할당을 통해 lines의 index를 a, b, c 에 보관  
+  - squares의 해당 index 값을 비교하여 3개가 모두 일치하면 값이 X인지 O인지를 return  
+  - 일치하는 것이 없다면 null을 return  
+
+* Board 컴포넌트의 handleClick 함수에서 calculateWinner(squares)를 호출하여 승리를 확인  
+  - 이 검사는 사용자가 이미 X 또는 O가 있는 사각형을 클릭했는지를 확인하는 것과 동시에 수행 가능  
+  - 두 경우 모두 함수를 조기 반환  
+  ```javascript
+    function handleClick(i) {
+      if (squares[i] || calculateWinner(squares)) {
+        return;
+      }
+      //...
+    }
+  ``` 
 
 ### 구조 분해 할당(Destructuring Assignment)  
 * 비구조화 할당, 구조화 할당이라고도 번역되지만 구조 분해 할당을 많이 사용함  
