@@ -1,5 +1,86 @@
 # 202030121 이승엽
 
+## 4월 17일 (7주차)
+### state 끌어올리기  
+```javascript
+  export default function Board() {
+    //...
+    return (
+      <>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={() -> handleClick(0)}/>
+        //..
+    );
+  }
+```  
+  - handleClick(0) 함수를 화살표 함수가 호출하고, 화살표 함수를 Square에 전달  
+
+* 이제 Board가 모든 state를 관리하므로 부모 Board 컴포넌트는 자식 Square 컴포넌트가 올바르게 표시될 수 있도록 props를 전달  
+* Square를 클릭하면 자식 Square 컴포넌트가 부모 Board 컴포넌트에 Board의 state를 업데이트 하도록 요청  
+* Board의 state가 변경되면 Board 컴포넌트와 모든 자식 Square 컴포넌트가 자동으로 다시 렌더링  
+* Board 컴포넌트에 속한 모든 Square의 state를 유치하면 나중에 승패를 결정할 수 있음  
+* 중요한점  
+  - DOM <button> 엘리먼트의 onClick 어트리뷰트(속성)는 빌트인 컴포넌트이기 때문에 React에서 특별한 의미를 가짐  
+  - 사용자 정의 컴포넌트, dPfmf emfdj Square의 경우 이름은 사용자가 원하는 대로 지을 수 있음  
+  - Square의 onSquareClick prop나 Board의 handleClick 함수에 어떠한 이름을 붙여도 코드는 동일하게 작동  
+  - React에서는 주로 이벤트를 나타내는 prop에는 onSomething과 같은 이름을 사용하고, 이벤트를 처리하는 함수를 정의 할 때는 handleSomething과 같은 이름을 사용  
+
+### 불변성  
+* handleClick에서 기존 배열을 수정하는 대신 slice()를 호출하여 squares배열의 사본 생성하는 이유  
+  - 일반적으로 데이터를 변경하는 방법에는 두 가지가 있음  
+    - 첫 번째 방법은 데이터의 값을 직접 변경하여 데이터를 변형하는 것  
+    - 두 번째 방법은 원하는 변경사항이 있는 새 복사본으로 데이터를 대체  
+  - 최종 결과는 같지만 원본 데이터를 직접 변형하지 않음으로써 몇 가지 이점을 얻을 수 있음  
+    - 불변성을 사용하면 복잡한 기능을 훨씬 쉽게 구현할 수 있음  
+    - 컴포넌트가 데이터의 변경 여부를 저렴한 비용으로 판단할 수 있음  
+
+### 교대로 두기 -1  
+* "O" 표시를 보드에 표시하기 위한 코드 작성  
+  - 첫 번째 두는 말을 "X"로 설정.  
+  - X와 O가 번갈아 한 번씩 두어야 하기 때문에 X가 두었는지 아닌지 현재의 상태를 보관  
+  ```javascript
+    function Board() {
+      const [xIsNext, setXIsNext] = useState(true);
+      const [squares, setSquares] = useState(Array(9).fill(null));
+      //...
+    }
+  ```  
+* 완성된 코드는 다음과 같다.  
+  ```javascript
+    export default function Board() {
+      const [xIsNext, setXIsNext] = useState(true);
+      const [square, setSquare] = useState(Array(9).fill(null));
+
+      function handleClick(i) {
+        const nextSquare = square.slice();
+        if (xIsNext) {
+          nextSquare[i] = "X";
+        } else {
+          nextSquare[i] = "O";
+        }
+        setSquare(nextSquare)
+        setXIsNext(!xIsNext);
+      }
+      //...
+    }
+  ```  
+
+### 교대로 두기 - 2
+* 이미 클릭된 자리에 다시 클릭하면 덮어씌우는 문제를 수정  
+  - square가 이미 채워져 있는 경우 Board의 state를 업데이트하기 전에 handleClick 함수에서 조기에 return 한다  
+  ```javascript
+    function handleClick(i) {
+      return;
+    }
+    const nextSquares = squares.slice();
+    //...
+  ```  
+  - 이러면 빈 사각형에만 클릭이 가능해짐  
+
+### return의 의미
+
+  
+
 ## 4월 10일 (6주차)  
 ### props를 통해 데이터 전달  
 ```React의 component architecture를 사용해서 재사용할 수 있는 component를 만들어서 중복된 코드 삭제  
