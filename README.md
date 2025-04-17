@@ -147,7 +147,7 @@
   ```javascript
         export default function Board() {
       // ...
-      const winner = calculateWinner(squares);
+      const winner = calculateWinner(square);
       let status;
       if (winner) {
         status = "Winner: " + winner;
@@ -164,6 +164,40 @@
     }
   ```
   
+### 한번더 state 끌어올리기  
+* 과거 플레이 목록을 표시하기 위해 새로운 최상위 컴포넌트 game 작성  
+  - 여기에 전체 게임 기록을 포함하는 history state를 배치  
+  - history state를 Game 컴포넌트에 배치하면 자식 Board 컴포넌트에서 squares state를 제거할 수 있음  
+  - Board 컴포넌트에서 최상위 Game 컴포넌트로 state를 끌어올릴 수 있음  
+  - 이렇게 하면 Game 컴포넌트가 Board 컴포넌트의 데이터를 완전히 제어하고 Board의 history에서 이전 순서를 렌더링하도록 지시할 수 있음  
+
+* 먼저 export defualt가 있는 Game 컴포넌트 추가  
+* 마크업 안에 Board 컴포넌트를 렌더링  
+* index.js 파일에서 Board 컴포넌트 대신 Game컴포넌트를 최상위 컴포넌트로 사용하도록 지시  
+```javascript
+      export default function Game() {
+      const [xIsNext, setXIsNext] = useState(true);
+      const[history, setHistory] = useState([Array(9),fill(null)]);
+      const currentSquares = history[history.length - 1];
+
+      function handlePlay(nextSquare) {
+        setHistory([...history, nextSquare]);
+        setXIsNext(!xIsNext);
+      }
+
+      return (
+        <div className="game">
+          <div className="game-board">
+            <Board xIsNext={xIsNext} Square={currentSquares} onPlay={handlePlay} />
+          </div>
+          <div className="game-info">
+            <ol>{/*TODO*/}</ol>
+          </div>
+        </div>
+      );
+
+    }
+```
 
 ## 4월 10일 (6주차)  
 ### props를 통해 데이터 전달  
