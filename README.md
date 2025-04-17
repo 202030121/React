@@ -131,14 +131,38 @@
       }
       //...
     }
-  ``` 
+  ```  
 
 ### 구조 분해 할당(Destructuring Assignment)  
 * 비구조화 할당, 구조화 할당이라고도 번역되지만 구조 분해 할당을 많이 사용함  
 * 구화 분해 할당은 배열이나 객체의 구조를 해체하여 내부 값을 개별 변수에 쉽게 할당하는 방법  
 * 이를 통해 코드의 간결성과 가독성을 높일 수 있음  
 * map함수에서도 사용되는 아주 많이 사용하는 방법  
-![](./img/17.PNG)
+![](./img/17.PNG)  
+
+### 승자 결정 -2  
+* 게임종료시 Winner:X 또는 O라고 표시  
+  - 이렇게 하려면 Board 컴포넌트에 status 구역을 추가  
+  - 게임이 끝나면 status는 승자를 표시, 게임이 진행중인 경우 다음 플레이어의 차례를 표시  
+  ```javascript
+        export default function Board() {
+      // ...
+      const winner = calculateWinner(squares);
+      let status;
+      if (winner) {
+        status = "Winner: " + winner;
+      } else {
+        status = "Next player: " + (xIsNext ? "X" : "O");
+      }
+
+      return (
+        <>
+          <div className="status">{status}</div>
+          <div className="board-row">
+            // ...
+      )
+    }
+  ```
   
 
 ## 4월 10일 (6주차)  
