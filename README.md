@@ -67,6 +67,7 @@
 
 ### 교대로 두기 - 2
 * 이미 클릭된 자리에 다시 클릭하면 덮어씌우는 문제를 수정  
+
   - square가 이미 채워져 있는 경우 Board의 state를 업데이트하기 전에 handleClick 함수에서 조기에 return 한다  
   ```javascript
     function handleClick(i) {
@@ -76,8 +77,45 @@
     //...
   ```  
   - 이러면 빈 사각형에만 클릭이 가능해짐  
+* return의 의미  
+  - 자바스크립트에서 return값이 없는 return;은 함수를 즉시 종료하는 의미  
+  - 이때 반환하지 않으면 자동으로 undefined를 반환  
+  - squares[i]가 이미 값이 있다면, 그 자리에 다시 둘 수 없으니 아무 일도 하지말고 함수를 끝내는 것.  
 
-### return의 의미
+### 승자 결정하기  
+* 게임의 승즈가 결정되어 더 이상 차례를 만들 필요가 없을 때도 표시해야 함.  
+* 이를 위해 9개의 사각형 배열을 가져와서 승자를 확인하고, 적절하게 'X', 'O', 또는 NULL을 반환하는 도우미 함수 calulateWinner를 추가  
+
+### 승자 결정 -1  
+* 승리할 수 있는 경우의 자리를 2차원 배열로 선언  
+  - 선언된 배열 line과 squares를 비교하기 위한 for문 작성
+  - 비교를 위해 구조 분해 할당을 한다  
+  ```javascript
+    export default function Board() {
+    //...
+  }
+
+  function calculateWinner(squares) {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6]
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+        return squares[a];
+      }
+    }
+    return null;
+  }
+  ```
+
 
   
 
