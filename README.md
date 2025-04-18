@@ -39,7 +39,17 @@
   - 이미 state에 이동 history 배열이 있기 때문에 이것을 React 엘리먼트 배열로 변환  
   - JavaScript에서 한 배열을 다른 배열로 변환하려면 배열 map 메서드를 사용  
   `[1, 2, 3].map((x) => x * 2) // [2, 4, 6]`  
-  
+
+### map함수의 사용  
+* map의 기본 구문은 map(callbackFn, thisArg)  
+* thisArg는 내부에서 this로 사용할 값을 지정하는데 화살표 함수에서는 생략  
+* 화살표 함수가 callback함수를 대신함, squares, move는 화살표 함수의 매개변수  
+* history.map: history는 모든 플레이를 저장하는 배열. 이 history에 map함수를 작용한다는 의미  
+* map함수는 history 각각의 요소 index를 순회하면서 squares를 추출  
+* 각 요소는 {}안의 실행문을 실행하면서 버튼을 생성  
+  - 이렇게 생성된 버튼은 moves 객체(배열)에 다시 저장  
+  * move는 최종 렌더링에 사용  
+
 
 ## 4월 17일 (7주차)
 ### state 끌어올리기  
