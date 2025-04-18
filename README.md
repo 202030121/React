@@ -83,6 +83,59 @@
 * key가 지정되지 않은 경우, React는 경고를 표시하며 배열의 인덱스를 기본 key로 사용  
 * 배열 인덱스를 key로 사용하면 리스트 항목의 순서를 바꾸거나 항목을 추가/제거할 때 문제가 발생  
 * 명시적으로 key={i}를 전달하면 경고는 사라지지만 배열의 인덱스를 사용할 때와 같은 문제가 발생하므로 대부분 비추천  
+* key는 전역적으로 고유할 필요는 없으며, 컴포넌트와 해당 컴포넌트의 형제 컴포넌트 사이에서만 고유하면 됨  
+
+### 시간여행 구현하기 - 1
+* 틱택토 게임의 기록에서 과거의 각 플레이에는 플레이의 일련번호인 고유 ID가 존재  
+* 플레이 인덱스를 key로 사용하는 것이 안전  
+  - Game 함수에서 <li key={move}>로 key를 추가할 수 있으며, 렌더링 된 게임을 다시 로드하면 React의 key 에러가 사라짐  
+  ```javascript
+  const moves = history.map((square, move) = > {
+    //...
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+  ```  
+
+### 시간여행 구현하기 - 2  
+* jumpTo를 구현하기 전에 사용자가 현재 어떤 단계를 보고 있는지를 추적할 수 있는 Game 컴포넌트의 state가 하나 더 필요함  
+  - 이를 위해 초기값이 0인 currentMove라는 새 state 변수를 정의  
+  ``` const [currentMove, setCurrnetMove] = useState(0); ```  
+  - 다음으로 Game 내부의 jumpTo 함수를 수정해서, 해당 currnetMove를 업데이트  
+  - 또한, currnetMove를 변경하는 숫자가 짝수면 xIsNext를 true로 설정  
+  ```javascript
+    function jumpTo(nextMove) {
+      setCurrnetMove(nextMove);
+      setXIsNext(nextMove % 2 === 0);
+      //...
+    }
+  ```   
+* 시간을 거슬러 올라가는 시점에서 새로운 플레이를 하는 경우 해당 시점까지의 히스토리만 유지  
+  - history의 모든 항목(... 전개 구문) 뒤에 nextSquares를 추가하는 대신 history.slice(0, currnetMove + 1)의 모든 항목 뒤에 추가하여 이전 히스토리의 해당 부분만 유지  
+* 이동할 때마다 최신 히스토리 항목을 가리키도록 cuurrnetMove를 업데이트  
+  ```javascript
+    function handlePlay(nextSquare) {
+    const nextHistory = [...history.slice(0, currntMove + 1), nextSquare];
+    setHistory(nextSquare);
+    setCurrnetMove(nextHistory.length - 1);
+    setXIsNext(!xIsNext);
+  }
+  ```
+  - 내부적으로 동작하지만 렌더링은 안되는 상태  
+
+* 항상 마지막 동작을 렌더링하는 대신 현재 선택한 동작을 렌더링하도록 Game 컴포넌트를 수정  
+  - [history.length - 1] -> [currntMove]
+    ```javascript
+      function handlePlay(nextSquare) {
+      const nextHistory = [...history.slice(0, currentMove + 1), nextSquare];
+      setHistory(nextHistory);
+      setCurrentMove(nextHistory.length - 1);
+      setXIsNext(!xIsNext);
+    }
+    ```
 
 
 

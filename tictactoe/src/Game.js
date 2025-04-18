@@ -4,10 +4,13 @@ import {useState} from 'react';
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const[history, setHistory] = useState([Array(9).fill(null)]);
-  const currentSquare = history[history.length - 1];
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquare = history[currentMove];
 
   function handlePlay(nextSquare) {
-    setHistory([...history, nextSquare]);
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquare];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
     setXIsNext(!xIsNext);
   }
 
@@ -23,7 +26,7 @@ export default function Game() {
       description = 'Go to game start';
     }
     return (
-      <li>
+      <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
