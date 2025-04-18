@@ -1,5 +1,46 @@
 # 202030121 이승엽
 
+## 4월 18일 (8주차)  
+### 한 번 더 state 끌어올리기  
+* 플레이 기록을 추적하기 위해 Game 컴포넌트에 몇 개의 state를 추가  
+
+  ```javascript
+  export default function Game() {
+    const [xIsNext, setXIsNext] = useState(true);
+    const[history, setHistory] = useState([Array(9),fill(null)]);
+  }
+  ```  
+* 현재 플레이에 대한 square를 렌더링하려면 history에서 마지막 squares의 배열을 읽어야 함  
+  - 렌더링 중에 계산할 수 있는 충분한 정보가 이미 있으므로 useState는 필요치 않음  
+  ```javascript
+  const currentSquare = history[history.length - 1];
+  ```  
+* Board 컴포넌트가 props에 의해 완전히 제어되도록 수정  
+  - Board 컴포넌트가 xIsNext, square, onPlay 함수를 props로 받을 수 있도록 변경  
+   - onPlay는 Board가 업데이트된 square를 배열로 호출할 수 있는 새로운 함수  
+  - 다음으로 Board 함수에서 useState를 호출하는 처음 두 줄을 제거  
+  ```javascript
+  const [xIsNext, setXIsNext] = useState(true);
+  const [square, setSquare] = useState(Array(9).fill(null));
+  ```  
+  - Board 컴포넌트의 handleClick에 있는 setSquares 및 setXIsNext 호출을 새로운 onPlay 함수에 대한 단일 호출로 대체함으로써 사용자가 사각형을 클릭할 때 Game 컴포넌트가 Board를 업데이트 할 수 있음  
+* Board 컴포넌트는 Game 컴포넌트가 전달한 props에 의해 완전히 제어  
+* 게임이 다시 작동하게 하려면 Game 컴포넌트에서 handlePlay 함수를 구현  
+* 앞에서 `setHistory([...history, nextSquare]);`는 history에 있는 모든 항목을 포함하는 새 배열을 만들고 그 뒤에 nextSquares를 만듦  
+
+### 화면이 한 줄로 깨져서 보이는 이유  
+* Square 컴포넌트에서 <button>을 <div>로 감싸서 생기는 문제  
+  - <></>로 감싸거나 <button>만 남기기  
+
+### 과거 움직임 보여주기  
+* 게임의 히스토리를 기록하기 때문에, 플레이어에게 과거 플레이 목록을 보여줄 수 있음  
+  - <button>과 같은 React 엘리먼트는 일반 JavaScript 객체이므로 애플리케이션에서 전달할 수 있음  
+  - React에서 여러 엘리먼트를 렌더링하려면 React 엘리먼트 배열을 사용할 수 있음  
+  - 이미 state에 이동 history 배열이 있기 때문에 이것을 React 엘리먼트 배열로 변환  
+  - JavaScript에서 한 배열을 다른 배열로 변환하려면 배열 map 메서드를 사용  
+  `[1, 2, 3].map((x) => x * 2) // [2, 4, 6]`  
+  
+
 ## 4월 17일 (7주차)
 ### state 끌어올리기  
 ```javascript
