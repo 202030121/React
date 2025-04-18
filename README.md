@@ -137,6 +137,13 @@
     }
     ```
 
+### 최종정리  
+* 코드를 자세히 살펴보면 currentMove가 짝수일 대는 xIsNext === true가 되고, currentMove가 홀수일 때는 xIsNext === false가 되는 것을 알 수 있음  
+
+* 즉, currnetMove의 값을 알고 있다면 언제나 xIsNext가 무엇인지 알아낼 수 있음  
+* 따라서 이 두 가지 state를 모두 저장할 이유가 없음  
+* 항상 중복되는 state 확인  
+
 
 
 
