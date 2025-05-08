@@ -65,6 +65,9 @@
 * 프로젝트 새로 생성 후 필요없는 파일 제거하고 App.js에 있는 코드 모두 삭제  
 * 사용할 데이터 PRODUCTS를 적당한 위치에 작성(여기서는 제일 아래에 작성)  
 * FilterableProductTable component 만들기  
+* SearchBar와 ProductTable component를 작성  
+* ProdcutCategoryRow와 ProductRow를 작성  
+* 마지막으로 처음에 수정한 App component를 다시 수정  
 
 
 
