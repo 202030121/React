@@ -1,5 +1,35 @@
 # 202030121 이승엽
 
+## 5월 8일 (9주차)
+### React로 사고하기  
+* React로 사용자 인터페이스를 빌드할 때, 먼저 이를 컴포넌트 조각으로 나눔.  
+* 각 컴포넌트의 다양한 시각적 상태들을 정의  
+* 컴포넌트들을 연결하여 데이터가 그 사이를 흘러가게 함.  
+
+### 모의 시안과 함께 시작  
+* JSON API는 아래와 같은 형태의 데이터를 반환  
+```javascript
+  [
+    { category: "Fruits", price: "$1", stocked: true, name: "Apple" },
+    { category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit" },
+    { category: "Fruits", price: "$2", stocked: false, name: "Passionfruit" },
+    { category: "Vegetables", price: "$2", stocked: true, name: "Spinach" },
+    { category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin" },
+    { category: "Vegetables", price: "$1", stocked: true, name: "Peas" }
+  ]
+```   
+### Step 1 : UI를 컴포넌트 계층으로 쪼개기  
+* Programming : 새로운 함수나 객체를 만드는 방식과 같은 방법으로 한다  
+  - 이 중 단일책임 원칙을 반영하고자 한다면 컴포넌트는 이상적으로는 한 번에 한 가지 일만 해야 한다  
+  - 만약 컴포넌트가 점점 커진다면 작은 하위 컴포넌트로 쪼개야 함  
+
+* CSS : 클래스 선택자를 무엇으로 만들지 생각한다
+* Design : 디자인 계층을 어떤 식으로 구성할 지 생각한다
+* JSON이 잘 구조화 되었다면, UI의 컴포는트 구조가 자연스럽게 데이터 모델에 대응  
+* 이는 UI와 데이터 모델은 보통 같은 정보 아키텍처, 즉 같은 구조를 가지기 때문  
+* UII를 컴포넌트로 분리하고, 각 컴포넌트가 데이터 모델에 매칭될 수 있도록 하기  
+
+
 ## 4월 18일 (8주차)  
 ### 한 번 더 state 끌어올리기  
 * 플레이 기록을 추적하기 위해 Game 컴포넌트에 몇 개의 state를 추가  
