@@ -2,7 +2,7 @@
 
 ## 5월 15일 (10주차)  
 ### step 4: State가 어디에 있어야 할 지 정하기  
-* 어떤 컴포넌트가 이 state를 소유하고, 변경할 책임을 지게 할 지 정해야 합니다.  
+* 어떤 컴포넌트가 이 state를 소유하고, 변경할 책임을 지게 할 지 정해야 함.  
 
 * React는 항상 컴포넌트 계층구조를 따라 부모에서 자식으로 데이터를 전달하는 단방향 데이터 흐름 사용  
 * 앱을 구현하면서 어떤 컴포넌트가 state를 가져야 하는 지 명확하지 않을 수 있음  
@@ -40,7 +40,53 @@
       filterText={filterText}
       inStockOnly={inStockOnly} />
   </div>
+  ```   
+### Step 5: 역데이터 흐름 추가  
+* filterText라는 state가 변경되는 것이 아니기 때문에 input의 value는 변하지 않고 화면도 바뀌는 것이 없다.  
+
+* 사용자가 input을 변경할 때마다 사용자의 입력을 반영할 수 있도록 state를 업데이트하기를 원함.  
+* state는 FilterableProductTable이 가지고 있고 state 변경을 위해서는 setFilterText와 setInStockOnly를 호출하면 됨.  
+* SearchBar가 FilterableProductTable의 state를 업데이트할 수 있도록 하려면, 이 함수들을 SearchBar로 전달  
+  ```javascript
+    function FilterableProductTable({products}) {
+    const [filterText, setFilterText] = useState('');
+    const [inStockOnly, setInStockOnly] = useState(false);
+    return(
+      <div>
+        <SearchBar
+          filterText={filterText}
+          inStockOnly={inStockOnly}
+          onFilterTextChange={setFilterText}
+          onInStockOnlyChange={setInStockOnly}
+        />
+        <ProductTable
+          products={products}
+          filterText={filterText}
+          inStockOnly={inStockOnly}
+        />
+      </div>
+    );
+  }
   ```  
+* SearchBar에서 onChange 이벤트 핸들러를 추가하여 부모 state를 변경할 수 있도록 구현할 수 있음  
+  ```javascript
+    function SearchBar({ filterText, inStockOnly, onFilterTextChange, onInStockOnlyChange }) {
+    return (
+      <form>
+        <input type="text" value={filterText} placeholder="Search..."
+          onChange={(e) => onFilterTextChange(e.target.value)}
+        />
+        <label>
+          <input type="checkbox" checked={inStockOnly} 
+            onChange={(e) => onInStockOnlyChange(e.target.checked)}
+          />
+          {' '}
+          Only show products in stock
+        </label>
+      </form>
+    );
+  }
+  ```
 
 
 
