@@ -15,13 +15,13 @@
   - 혹은, 공통 부모 상위의 컴포넌트에 둬도 됩니다.  
   - state를 소유할 적절한 컴포넌트를 찾지 못했다면, state를 소유하는 컴포넌트를 하나 만들어서 상위 계층에 추가  
     
-  1. state를 쓰는 컴포넌트를 찾는다.  
-    - ProductTable은 state에 기반한 상품 리스트를 필터링  
-    - SearchBar는 state를 표시 (검색어와 체크 박스의 값)  
-  2. 공통 부모를 찾는다.  
-    - 둘 모두가 공유하는 첫 번째 부모는 FilterableProductTable  
-  3. 어디에 state가 존재해야 할지 결정  
-    - FilterableProductTable에 검색어와 체크 박스 값을 state로 둘 것.  
+1. state를 쓰는 컴포넌트를 찾는다.  
+  - ProductTable은 state에 기반한 상품 리스트를 필터링  
+  - SearchBar는 state를 표시 (검색어와 체크 박스의 값)  
+2. 공통 부모를 찾는다.  
+  - 둘 모두가 공유하는 첫 번째 부모는 FilterableProductTable  
+3. 어디에 state가 존재해야 할지 결정  
+  - FilterableProductTable에 검색어와 체크 박스 값을 state로 둘 것.  
 * FilterableProductTable의 상단에 두 개의 state 변수를 추가해서 초기값을 명확하게 보여주기  
   ```javascript
   function FilterableProductTable({ products }) {
