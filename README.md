@@ -30,16 +30,16 @@
   }
   ```  
 * 다음으로, filterText와 inStockOnly를 ProductTable와 SearchBar에게 props로 전달  
-  ```javascipt
-<div>
-  <SearchBar
-    filterText={filterText}
-    inStockOnly={inStockOnly} />
-  <ProductTable
-    products={products}
-    filterText={filterText}
-    inStockOnly={inStockOnly} />
-</div>
+  ```js
+  <div>
+    <SearchBar
+      filterText={filterText}
+      inStockOnly={inStockOnly} />
+    <ProductTable
+      products={products}
+      filterText={filterText}
+      inStockOnly={inStockOnly} />
+  </div>
   ```  
 
 
