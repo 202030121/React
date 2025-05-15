@@ -1,5 +1,48 @@
 # 202030121 이승엽
 
+## 5월 15일 (10주차)  
+### step 4: State가 어디에 있어야 할 지 정하기  
+* 어떤 컴포넌트가 이 state를 소유하고, 변경할 책임을 지게 할 지 정해야 합니다.  
+
+* React는 항상 컴포넌트 계층구조를 따라 부모에서 자식으로 데이터를 전달하는 단방향 데이터 흐름 사용  
+* 앱을 구현하면서 어떤 컴포넌트가 state를 가져야 하는 지 명확하지 않을 수 있음  
+  - 해당 state를 기반으로 렌더링하는 모든 컴포넌트 탐색  
+  - 그들의 가장 가까운 공통되는 부모 컴포넌트 탐색  
+    - 계층에서 모두를 포괄하는 상위 컴포넌트  
+  - state가 어디에 위치 돼야 하는지 결정  
+* state가 어디에 위치 돼야 하는지 결정하려면,  
+  - 대개, 공통 부모에 state를 그냥 두면 됩니다.  
+  - 혹은, 공통 부모 상위의 컴포넌트에 둬도 됩니다.  
+  - state를 소유할 적절한 컴포넌트를 찾지 못했다면, state를 소유하는 컴포넌트를 하나 만들어서 상위 계층에 추가  
+  1. state를 쓰는 컴포넌트를 찾는다.  
+    - ProductTable은 state에 기반한 상품 리스트를 필터링  
+    - SearchBar는 state를 표시 (검색어와 체크 박스의 값)  
+  2. 공통 부모를 찾는다.  
+    - 둘 모두가 공유하는 첫 번째 부모는 FilterableProductTable  
+  3. 어디에 state가 존재해야 할지 결정  
+    - FilterableProductTable에 검색어와 체크 박스 값을 state로 둘 것.  
+* FilterableProductTable의 상단에 두 개의 state 변수를 추가해서 초기값을 명확하게 보여주기  
+  ```javascript
+  function FilterableProductTable({ products }) {
+  const [filterText, setFilterText] = useState('');
+  const [inStockOnly, setInStockOnly] = useState(false);
+  }
+  ```  
+* 다음으로, filterText와 inStockOnly를 ProductTable와 SearchBar에게 props로 전달  
+  ```javascipt
+<div>
+  <SearchBar
+    filterText={filterText}
+    inStockOnly={inStockOnly} />
+  <ProductTable
+    products={products}
+    filterText={filterText}
+    inStockOnly={inStockOnly} />
+</div>
+  ```  
+
+
+
 ## 5월 8일 (9주차)
 ### React로 사고하기  
 * React로 사용자 인터페이스를 빌드할 때, 먼저 이를 컴포넌트 조각으로 나눔.  
