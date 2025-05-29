@@ -51,7 +51,7 @@
         const root = createRoot(document.getElementById('app'));  
         root.rent(<h1>Hello, world</h1>);
       ```  
-
+  - 페이지의 전체 내용이 "Hello, world!"로 바뀌었다면 모든 것이 정상적으로 동작  
 
 ## 5월 22일 (11주차)  
 ### 프로젝트에 도입하기  
