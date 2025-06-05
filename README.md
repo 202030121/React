@@ -79,6 +79,63 @@
 * React와 함께 TypeScript를 작성하는 것은 React와 함게 JavaScript를 작성하는 것과 매우 유사  
 * 컴포넌트로 작업할 때 가장 중요한 차이점은 컴포는트의 props에 타입을 제공할 수 있다는 점  
 
+* 컴포넌트의 props를 설명하는 타입은 원하는 만큼 단순하거나 복잡할 수 있음  
+  - type 또는 interface로 설명되는 객체 타입이어야 함  
+
+### TypeScript Hooks 예시  
+* useState   
+  - useState hook은 초기 state로 전달된 값을 재사용하여 값의 타입을 결정  
+  - ``const [enabled, setEnabled] = useState(false)``  
+    - boolean 타입이 enabled에 할당되고, setEnabled는 boolean인수나 boolean을 반환하는 함수를 받는 함수가 됨  
+  - ``const [enabled, setEnabled] = useState<boolean>(false); ``  
+    - 이 경우에는 유용하지 않지만, 타입 제공을 원하게 되는 일반적인 경우는 유니언 타입이 있는 경우이다  
+
+* useReducer  
+  - useReducer hook은 reducer함수와 초기 state를 취하는 더 복잡한 hook  
+  - ```javascript
+      import {useReducer} from 'react';
+
+      interface State {
+        count: number
+      };
+
+      type CounterAction =
+        | { type: "reset" }
+        | { type: "setCount"; value: State["count"] }
+
+      const initialState: State = { count: 0 };
+
+      function stateReducer(state: State, action: CounterAction): State {
+        switch (action.type) {
+          case "reset":
+            return initialState;
+          case "setCount":
+            return { ...state, count: action.value };
+          default:
+            throw new Error("Unknown action");
+        }
+      }
+
+      export default function App() {
+        const [state, dispatch] = useReducer(stateReducer, initialState);
+
+        const addFive = () => dispatch({ type: "setCount", value: state.count + 5 });
+        const reset = () => dispatch({ type: "reset" });
+
+        return (
+          <div>
+            <h1>Welcome to my counter</h1>
+
+            <p>Count: {state.count}</p>
+            <button onClick={addFive}>Add 5</button>
+            <button onClick={reset}>Reset</button>
+  -  ```  
+  - 몇 가지 주요 위치에서 TypeScript를 사용하고 있음  
+    - interface state는 reducer state의 모양을 설명  
+    - type CounterAction은 reducer에 dispatch 할 수 있는 다양한 액션 설명  
+    - const initialState: State는 초기 state의 타입을 제공하고, 기본적으로 useReducer에서 사용하는 타입도 제공  
+    - stateReducer(state: State, action: CounterAction): State는 reducer 함수의 인수와 반환 값의 타입을 설정합니다.  
+    
 
 
 ## 5월 29일 (12주차)  
