@@ -1,5 +1,86 @@
 # 202030121 이승엽
 
+## 6월 5일 (13주차)  
+### 기존 프로젝트에 React 추가  
+* 기존 프로젝트에서 React를 도입할 때, 일반적으로 작은 상호작용 컴포넌트(예시: 버튼)에서 시작하여 점진적으로 상위 구조로 확장하면서 결국에는 전체 페이지가 React로 빌드될 때까지 이 과정을 반복하게 됨  
+  - 이 지점에 도달하면 React의 장점을 최대한 활용하기 위해 React 프레임워크로 마이그레이션 하는 것을 권장  
+
+* 기존 네이티브 모바일 앱에서 React Native 사용  
+  - React Native 역시 기존 네이티브 앱에 점진적으로 통합할 수 있다  
+
+### 프로젝트에 도입하기 (Installation)  
+* React는 점진적으로 적용할 수 있도록 설계되었으며, 필요한 만큼 React를 사용할 수 있다  
+
+* 이 장에서는  
+  - 새로운 React 프로젝트 시작하는 방법  
+  - 기존 프로젝트에 React를 추가하는 방법  
+  - 에디터를 설정하는 방법  
+  - React 개발자 도구를 설치하는 방법  
+
+### 에디터 설정하기  
+* VS Code는 현재 가장 많이 사용되는 에디터 중 하나  
+  - VS Code에 설치할 수 있는 익스텐션 종류는 무수히 많으며, 깃허브와 같은 외부 서비스와의 연동도 지원  
+  - 아래에 나열된 기능들은 대부분 익스텐션으로 존재하기 때문에 VS Code의 설정은 다양한 방식으로 쉽게 변경할 수 있음  
+
+* 그 외에도 React 커뮤니티에서는 다음과 같은 에디터들이 흔히 사용됨  
+  - WebStorm은 자바스크립트에 특화되어 설계된 개발 환경  
+  - Sublime Text는 JSX와 타입스크립트를 지원하며 문법 강조 및 자동 완성 기능 내장  
+  - Vim은 모든 종류의 텍스트를 매우 효율적으로 생성 및 변경할 수 있도록 설계된 텍스트 편집기    
+
+### 에디터 기능 추천  
+* Linting  
+  - 코드 린터는 코드를 작성하는 동안 실시간으로 문제를 찾아, 빠른 문제해결을 도와줌  
+
+* Formatting  
+  - Prettier를 사용하면 직접 지정해 놓은 규칙들에 부합하도록 코드의 형식을 깔끔하게 정리할 수 있음  
+  - 파일을 저장할 때마다 Prettier가 자동 실행되어 이러한 작업들을 수행해 주는 것이 가장 이상적인 설정  
+
+### TypeScript 사용하기  
+* TypeScript는 자바스크립트 코드 베이스에 타입 정의를 추가하는 데 널리 사용되는 방법  
+  - 기본적으로 JSX 지원, @types/react 및 @types/react-dom을 추가하면 완전한 React Web 지원을 받을 수 있음  
+
+* 기존 React 프로젝트에 TypeScript 추가하기  
+  - 최신 버전의 React 타입 정의를 설치  
+    - ``npm install @types/react @types/react-dom``  
+  - 다음 컴파일러 옵션을 tsconfig.json에 설정  
+    - dom은 반드시 lib에 포함  
+      - 주의: lib 옵션이 지정되지 않으면, 기본적으로 dom이 포함  
+    - jsx를 유효한 옵션 중 하나로 설정해야 함  
+
+* React 컴포넌트에 TypeScript 사용하기  
+  - JSX를 포함하고 있는 모든 파일은 .tsx 파일 확장자를 사용  
+  - 이것은 이 파일이 JSX를 포함하고 있음을 TypeScript에 알려주는 전용 확장자임  
+
+* App.tsx 예시  
+  ```javascript
+  interface MyButtonProps {
+    /** 버튼 안에 보여질 텍스트 */
+    title: string;
+    /** 버튼이 상호작용할 수 있는지 여부 */
+    disabled: boolean;
+  }
+
+  function MyButton({ title, disabled }: MyButtonProps) {
+    return (
+      <button disabled={disabled}>{title}</button>
+    );
+  }
+
+  export default function MyApp() {
+    return (
+      <div>
+        <h1>Welcome to my app</h1>
+        <MyButton title="I'm a disabled button" disabled={true}/>
+      </div>
+    );
+  }
+  ```   
+
+* React와 함께 TypeScript를 작성하는 것은 React와 함게 JavaScript를 작성하는 것과 매우 유사  
+* 컴포넌트로 작업할 때 가장 중요한 차이점은 컴포는트의 props에 타입을 제공할 수 있다는 점  
+
+
+
 ## 5월 29일 (12주차)  
 ### 처음부터 React앱 만들기  
 * 스트리밍 서버 측 렌더링(SSR)은 서버에서 페이지를 렌더링하고 완전히 렌더링된 페이지를 클라이언트로 전송  
