@@ -165,9 +165,12 @@
 ### 프로젝트 배포 준비  
   - 프로젝트의 터미널에서 다음 명령으로 깃허브 페이지 라이브러리 설치  
     - `npm i gh-pages`  
-  - packge.json파일에 homepage를 추가  
+  - packge.json파일 가장 상단에 homepage를 추가  
     - `{"homepage": "자신이 배포했던 링크"}`  
-  -
+  - packge.json파일 scripts에 다음 코드를 추가  
+    -`    "predeploy": "npm run build", "deploy": "gh-pages -d build"`  
+  - 터미널에서 npm run deploy 실행  
+  - 깃허브 프로젝트 저장소에서 Settings -> Pages의 main을 gh-pages 변경  
 
 ## 5월 29일 (12주차)  
 ### 처음부터 React앱 만들기  
