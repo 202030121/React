@@ -135,8 +135,32 @@
     - type CounterAction은 reducer에 dispatch 할 수 있는 다양한 액션 설명  
     - const initialState: State는 초기 state의 타입을 제공하고, 기본적으로 useReducer에서 사용하는 타입도 제공  
     - stateReducer(state: State, action: CounterAction): State는 reducer 함수의 인수와 반환 값의 타입을 설정합니다.  
-    
 
+### GitHub 배포  
+* GitHub Pages 기본 저장소  
+  - 깃허브 페이지를 운영하려면 먼저 저장소를 생성  
+  - 생성 방법은 일반 저장소 생성과 동일하지만, 저장소 이름은 도메인 형태로 진행  
+  - 또한 최상위 도메인 부분은 .com이 아니라 .io로 해야함  
+    - `<ID>.github.io`  
+  - 직접 저장소를 만들었다면 clone해서 local에서 작업하고 push  
+  - 처음부터 저장소를 local에 만들었다면 그대로 push  
+
+  - 이 저장소는 깃허브에서 정적 호스팅을 하기 위해서는 반드시 필요한 저장소이다  
+  - 이후 다른 이름의 저장소도 페이지로 사용 가능. 단, 페이지로 사용할 저장소가 있다면 설정에서 페이지를 활성화  
+
+### 기본 저장소 생성 및 접속  
+* 깃허브 계정 접속 후 Repositories 탭 클릭  
+  - 초록색 버튼의 New 버튼 클릭  
+  - Repository name에서 `<자신의 깃허브 닉네임(id)>.github.io` 입력 후 생성  
+  - create a new file 링크 클릭 후 index.html 페이지 생성  
+
+### 배포할 프로젝트 저장소 생성  
+* 프로젝트 배포  
+  - Working directiory에 프로젝트 새로 만들고, README.md를 간단히 수정  
+  - 프로젝틀들 깃허브로 push. 저장소는 public  
+  - 깃허브에서 프로젝트 저장소에서 Settings -> Pages의 None 클릭  
+  - Select branch에서 main(master) 선택, 저장(save)  
+  - 1~2분 후에 <id>.github.id<Repo-name>으로 접속하면 README 확인 가능  
 
 ## 5월 29일 (12주차)  
 ### 처음부터 React앱 만들기  
